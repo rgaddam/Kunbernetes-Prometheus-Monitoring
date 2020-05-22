@@ -1,0 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole # Can be used to grant access to any particular namespace, or across all namespaces.
+metadata:
+  name: kube-prometheus
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "pods/log", "nodes", "nodes/proxy", "services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+
+- apiGroups: ["extensions"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/health"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding # grant permission across whole cluster, this grant default serviceaccount access cluster-wide.
+metadata:
+  name: kube-prometheus
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: monitoring
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole   
+  name: kube-prometheus
+
+
+## Ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
