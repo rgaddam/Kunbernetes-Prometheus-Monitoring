@@ -31,6 +31,7 @@ a.	Get the prometheus pod name
     $ kubectl get pods -n test-prometheus
 
    NAME                                    READY   STATUS   RESTARTS   AGE
+   
    prometheus-deployment-68f695c7c8-qvhgr   1/1     Running   0          56m
 
 b.	Execute below command to access prometheus form localhost port 8080
