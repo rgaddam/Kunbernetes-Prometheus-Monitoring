@@ -6,6 +6,13 @@
 
     $ kubectl create -f ConfigMap.yaml -n test-prometheus
 
+The following jobs are being configured as targets using service discovery.
+  - kubernetes-apiservers: Gets metrics on the Kubernetes APIs.
+  - kubernetes-nodes: Gets metrics on the Kubernetes nodes.
+  - kubernetes-pods: Gets metrics from Pods that have the prometheus.io/scrape and prometheus.io/port annotations defined in the metadata.
+  - kubernetes-cadvisor: Gets cAdvisor metrics reported from the Kubernetes cluster.
+  - kubernetes-service-endpoints: Gets metrics from Services that have the prometheus.io/scrape and prometheus.io/port annotations defined in the metadata.
+
 3.	Create A Prometheus Deployment:  
     a.	Create a deployment on test-prometheus namespace using the deployment file and command below 
 
