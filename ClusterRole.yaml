@@ -10,7 +10,7 @@ rules:
 - apiGroups: ["extensions"]
   resources: ["ingresses"]
   verbs: ["get", "list", "watch"]
-- nonResourceURLs: ["/health"]
+- nonResourceURLs: ["/metrics"]
   verbs: ["get"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
